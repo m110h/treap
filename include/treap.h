@@ -5,11 +5,6 @@
 #include <random>
 #include <limits>
 
-// https://en.wikipedia.org/wiki/Treap
-// http://blog.ruofeidu.com/treap-in-45-lines-of-c/
-// https://habr.com/en/post/112394/
-// https://e-maxx.ru/algo/treap
-
 namespace m110h
 {
 
