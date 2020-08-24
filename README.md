@@ -16,7 +16,7 @@ It's a header only implementation that uses STL for generating random priorities
 * https://habr.com/en/post/112394/ (Rus)
 * https://e-maxx.ru/algo/treap (Rus)
 
-# Build and run unit tests
+# Building and running unit tests
 
 Don't worry about google test framework, cmake will clone release-1.10.0 and place it to build directory.
 
