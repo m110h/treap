@@ -16,7 +16,10 @@ It's a header only implementation that uses STL for generating random priorities
 * https://habr.com/en/post/112394/ (Rus)
 * https://e-maxx.ru/algo/treap (Rus)
 
-# Build
+# Build and run unit tests
+
+Don't worry about google test framework, cmake will clone release-1.10.0 and place it to build directory.
+
 
 ```
 $ git clone https://github.com/m110h/treap.git
@@ -25,4 +28,5 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
+$ ./bin/unit_tests
 ```
