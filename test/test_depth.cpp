@@ -3,7 +3,11 @@
 
 TEST(treap, depth)
 {
-    double res;
-    res = -1.0;
-    ASSERT_NEAR(res, -1.0, 1.0e-11);
+	m110h::Treap<int> t;
+	
+	int _depth = t.Depth();
+    
+	//double res;
+    //res = -1.0;
+    //ASSERT_NEAR(res, -1.0, 1.0e-11);
 }

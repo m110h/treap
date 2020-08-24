@@ -3,6 +3,10 @@ add_executable(
     test_depth.cpp
     )
 
+target_include_directories(
+	unit_tests PRIVATE ${CMAKE_SOURCE_DIR}/include
+	)
+
 target_link_libraries(
     unit_tests
     gtest_main
