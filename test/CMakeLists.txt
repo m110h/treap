@@ -1,6 +1,8 @@
 add_executable(
     unit_tests
     test_depth.cpp
+    test_find.cpp
+    test_find_best_fit.cpp
     )
 
 target_include_directories(

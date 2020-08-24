@@ -5,8 +5,10 @@
 #include <random>
 #include <limits>
 
+// https://en.wikipedia.org/wiki/Treap
 // http://blog.ruofeidu.com/treap-in-45-lines-of-c/
 // https://habr.com/en/post/112394/
+// https://e-maxx.ru/algo/treap
 
 namespace m110h
 {
@@ -187,26 +189,6 @@ public:
     }
 
     Node* FindBestFit(const T& _data) { return FindBestFit(root, _data); }
-
-    /*
-    int rfs(Node *&p, int k)
-    {
-        if (k <= p->l->c)
-            return rfs(p->l, k);
-        else if (k == p->l->c + 1)
-            return p->x;
-        else
-            return rfs(p->r, k - p->l->c - 1);
-    }
-
-    int rfs(int k)
-    {
-        if (k>=1 && k<=root->c)
-            return rfs(root,k);
-        else
-            return -1;
-    }
-    */
 
     int Depth(Node *&p, int current_depth)
     {
