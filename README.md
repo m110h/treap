@@ -18,12 +18,14 @@ It's a header only implementation that uses STL for generating random priorities
 
 # Build
 
+```
 $ git clone https://github.com/m110h/treap.git
 $ cd treap
 $ mkdir build
 $ cd build
 $ cmake ..
 $ make
+```
 
 # License
 
