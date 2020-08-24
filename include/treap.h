@@ -13,7 +13,6 @@
 namespace m110h
 {
 
-// Treap = Tree + Heap
 template<typename T>
 class Treap
 {
