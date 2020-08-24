@@ -26,7 +26,3 @@ $ cd build
 $ cmake ..
 $ make
 ```
-
-# License
-
-MIT
