@@ -13,31 +13,31 @@ TEST(treap, depth)
 	// 10^2
 	n *= 10;
 	for (int i=0; i<n; i++) t.Insert(i);
-	EXPECT_LE(t.Depth(), 20);
+	EXPECT_TRUE(t.Depth() <= 20);
 	t.Clear();
 
 	// 10^3
 	n *= 10;
 	for (int i=0; i<n; i++) t.Insert(i);
-	EXPECT_LE(t.Depth(), 30);
+	EXPECT_TRUE(t.Depth() <= 30);
 	t.Clear();
 
 	// 10^4
 	n *= 10;
 	for (int i=0; i<n; i++) t.Insert(i);
-	EXPECT_LE(t.Depth(), 40);
+	EXPECT_TRUE(t.Depth() <= 40);
 	t.Clear();
 
 	// 10^5
 	n *= 10;
 	for (int i=0; i<n; i++) t.Insert(i);
-	EXPECT_LE(t.Depth(), 50);
+	EXPECT_TRUE(t.Depth() <= 50);
 	t.Clear();
 
 	// 10^6
 	n *= 10;
 	for (int i=0; i<n; i++) t.Insert(i);
-	EXPECT_LE(t.Depth(), 60);
+	EXPECT_TRUE(t.Depth() <= 60);
 	t.Clear();
 
     t.Clear();

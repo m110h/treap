@@ -10,19 +10,19 @@ TEST(treap, find)
     t.Insert(20);
     t.Insert(30);
 
-    EXPECT_TRUE(t.Find(10));
-    EXPECT_TRUE(t.Find(20));
-    EXPECT_TRUE(t.Find(30));
+    EXPECT_TRUE(t.IsExists(10));
+    EXPECT_TRUE(t.IsExists(20));
+    EXPECT_TRUE(t.IsExists(30));
 
     t.Remove(10);
 
-    EXPECT_FALSE(t.Find(10));
-    EXPECT_TRUE(t.Find(20));
-    EXPECT_TRUE(t.Find(30));
+    EXPECT_FALSE(t.IsExists(10));
+    EXPECT_TRUE(t.IsExists(20));
+    EXPECT_TRUE(t.IsExists(30));
 
     t.Remove(20);
-    EXPECT_TRUE(t.Find(20));
+    EXPECT_TRUE(t.IsExists(20));
 
     t.Remove(20);
-    EXPECT_FALSE(t.Find(20));
+    EXPECT_FALSE(t.IsExists(20));
 }

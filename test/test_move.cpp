@@ -13,5 +13,5 @@ TEST(treap, move)
     auto t2 = std::move(t);
 
     for (int i=0; i<n; i++)
-        EXPECT_TRUE(t2.Find(i));
+        EXPECT_TRUE(t2.IsExists(i));
 }

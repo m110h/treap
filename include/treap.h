@@ -130,7 +130,7 @@ public:
     }
     */
 
-    bool Find(Node *&p, const T& _data)
+    Node* Find(Node *&p, const T& _data)
     {
         Node* tmp(p);
 
@@ -138,7 +138,7 @@ public:
         {
             if (tmp->data == _data)
             {
-                return true;
+                return tmp;
             }
             else if (tmp->data > _data)
             {
@@ -150,10 +150,19 @@ public:
             }
         }
 
+        return nullptr;
+    }
+
+    Node* Find(T _data){ return Find(root, _data); }
+
+    bool IsExists(Node *&p, const T& _data)
+    {
+        Node* tmp = Find(_data);
+        if (tmp) return true;
         return false;
     }
 
-    bool Find(T _data){ return Find(root, _data); }
+    bool IsExists(T _data){ return IsExists(root, _data); }
 
     Node* FindBestFit(Node *&p, const T& _data)
     {
@@ -207,7 +216,7 @@ private:
     int Rnd()
     {
         static std::mt19937 _generator(std::chrono::system_clock::now().time_since_epoch().count());
-        std::uniform_int_distribution<int> _range(0, INF);
+        static std::uniform_int_distribution<int> _range(0, INF);
         return _range(_generator);
     }
 
