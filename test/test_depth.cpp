@@ -1,27 +1,45 @@
 #include "gtest/gtest.h"
-#include "treap.h"
 
-#include <random>
-#include <chrono>
+#include "treap.h"
 
 TEST(treap, depth)
 {
 	m110h::Treap<int> t;
 
-    std::mt19937 _generator(std::chrono::system_clock::now().time_since_epoch().count());
-    std::uniform_int_distribution<int> _range(0, std::numeric_limits<int>::max());
+	ASSERT_EQ(t.Depth(), 0);
 
-	int _depth = t.Depth();
+	int n = 10;
 
-	ASSERT_EQ(_depth, 0);
+	// 10^2
+	n *= 10;
+	for (int i=0; i<n; i++) t.Insert(i);
+	EXPECT_LE(t.Depth(), 20);
+	t.Clear();
 
-    for (int i=0; i<10000; i++)
-    {
-        t.Insert(_range(_generator));
-    }
+	// 10^3
+	n *= 10;
+	for (int i=0; i<n; i++) t.Insert(i);
+	EXPECT_LE(t.Depth(), 30);
+	t.Clear();
+
+	// 10^4
+	n *= 10;
+	for (int i=0; i<n; i++) t.Insert(i);
+	EXPECT_LE(t.Depth(), 40);
+	t.Clear();
+
+	// 10^5
+	n *= 10;
+	for (int i=0; i<n; i++) t.Insert(i);
+	EXPECT_LE(t.Depth(), 50);
+	t.Clear();
+
+	// 10^6
+	n *= 10;
+	for (int i=0; i<n; i++) t.Insert(i);
+	EXPECT_LE(t.Depth(), 60);
+	t.Clear();
 
     t.Clear();
-    _depth = t.Depth();
-
-	ASSERT_EQ(_depth, 0);
+	ASSERT_EQ(t.Depth(), 0);
 }

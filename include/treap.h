@@ -24,7 +24,7 @@ public:
         T data;
 
         int y {0}; // a random value for balancing a tree
-        int c {0}; // an amount of nodes that belong a subtree (include this Node)
+        int c {0}; // an amount of nodes that belong to subtree (include this Node)
 
         Node *l {nullptr};
         Node *r {nullptr};
@@ -54,8 +54,7 @@ public:
 
     ~Treap()
     {
-        Clear();
-        if (null) { delete null; null=nullptr; }
+        Clear(); if (null) { delete null; null=nullptr; }
     }
 
     void Insert(Node *&p, const T& _data)
