@@ -37,31 +37,26 @@ public:
 
 private:
     Node *root {nullptr};
-    Node *null {nullptr};
 
 public:
-    explicit Treap() { null=new Node; null->y=INF; root=null; }
+    explicit Treap() {}
 
     Treap(Treap& src) = delete;
 
     Treap(Treap&& src)
     {
-        root=src.root; null=src.null;
-        src.root=src.null=nullptr;
+        root=src.root; src.root=nullptr;
     }
 
     Treap& operator=(const Treap& r) = delete;
 
-    ~Treap()
-    {
-        Clear(); if (null) { delete null; null=nullptr; }
-    }
+    ~Treap() { Clear(); }
 
     void Insert(Node *&p, const T& _data)
     {
-        if (p == null)
+        if (p == nullptr)
         {
-            p = new Node(_data); p->c=1; p->y=Rnd(); p->l=null; p->r=null;
+            p = new Node(_data); p->c=1; p->y=Rnd();
         }
         else if (_data < p->data)
         {
@@ -81,7 +76,7 @@ public:
 
     void Remove(Node *&p, const T& _data)
     {
-        if (p == null) return;
+        if (p == nullptr) return;
 
         if (p->data == _data)
             Remove(p);
@@ -90,17 +85,28 @@ public:
         else
             Remove(p->r, _data);
 
-        if (p!=null) Update(p);
+        if (p) Update(p);
     }
 
     void Remove(Node *&p)
     {
-        if ( p->l == null && p->r == null )
+        if ( p->l == nullptr && p->r == nullptr )
         {
-            delete p; p=null; return;
+            delete p; p=nullptr; return;
         }
 
-        if ( p->l->y < p->r->y )
+        if (p->l && p->r)
+        {
+            if ( p->l->y < p->r->y )
+            {
+                RotateLeft(p); Remove(p->r);
+            }
+            else
+            {
+                RotateRight(p); Remove(p->l);
+            }
+        }
+        else if (p->l)
         {
             RotateLeft(p); Remove(p->r);
         }
@@ -109,32 +115,16 @@ public:
             RotateRight(p); Remove(p->l);
         }
 
-        Update(p);
+        if (p) Update(p);
     }
 
     void Remove(const T& _data){ Remove(root, _data); }
-
-    /*
-    bool Find(Node *&p, T _data)
-    {
-        if (p == null)
-            return false;
-
-        if (_data == p->data)
-            return true;
-
-        if (_data < p->data)
-            return Find(p->l, _data);
-        else
-            return Find(p->r, _data);
-    }
-    */
 
     Node* Find(Node *&p, const T& _data)
     {
         Node* tmp(p);
 
-        while (tmp != null)
+        while (tmp)
         {
             if (tmp->data == _data)
             {
@@ -169,7 +159,7 @@ public:
         Node* tmp(p);
         Node* bestfit {nullptr};
 
-        while (tmp != null)
+        while (tmp)
         {
             if (tmp->data == _data)
             {
@@ -177,12 +167,10 @@ public:
             }
             else if (tmp->data < _data)
             {
-                //std::cout << "(right) in to " << tmp->r->data << " from " << tmp->data << std::endl;
                 tmp = tmp->r;
             }
             else
             {
-                //std::cout << "(left) in to " << tmp->l->data << " from " << tmp->data << std::endl;
                 bestfit = tmp; tmp = tmp->l;
             }
         }
@@ -192,12 +180,12 @@ public:
 
     Node* FindBestFit(const T& _data) { return FindBestFit(root, _data); }
 
-    int Depth(Node *&p, int current_depth)
+    int Depth(Node *&p, int depth)
     {
-        if (p == null) return current_depth;
+        if (p == nullptr) return depth;
 
-        int ldepth = Depth(p->l, current_depth + 1);
-        int rdepth = Depth(p->r, current_depth + 1);
+        int ldepth = Depth(p->l, depth + 1);
+        int rdepth = Depth(p->r, depth + 1);
 
         return (ldepth < rdepth) ? rdepth : ldepth;
     }
@@ -209,7 +197,7 @@ public:
 
     void Clear()
     {
-        if (root && null) while (root != null) Remove(root);
+        while (root) Remove(root->data);
     }
 
 private:
@@ -217,14 +205,18 @@ private:
     {
         static std::mt19937 _generator(std::chrono::system_clock::now().time_since_epoch().count());
         static std::uniform_int_distribution<int> _range(0, INF);
+
         return _range(_generator);
     }
 
     void Update(Node *&p)
     {
-        if (p != null)
+        if (p)
         {
-            p->c = p->l->c + p->r->c + 1;
+            p->c = 1;
+
+            if (p->l) p->c += p->l->c;
+            if (p->r) p->c += p->r->c;
         }
     }
 
