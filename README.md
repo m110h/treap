@@ -12,9 +12,10 @@ It's a header only implementation that uses STL for generating random priorities
 
 # Additional material
 
-* http://blog.ruofeidu.com/treap-in-45-lines-of-c/ (Eng)
 * https://habr.com/en/post/112394/ (Rus)
 * https://e-maxx.ru/algo/treap (Rus)
+* https://github.com/matthewsamuel95/ACM-ICPC-Algorithms/tree/master/Data%20Structures/Treap (Git)
+* http://blog.ruofeidu.com/treap-in-45-lines-of-c/ (Eng)
 
 # Building and running unit tests
 
